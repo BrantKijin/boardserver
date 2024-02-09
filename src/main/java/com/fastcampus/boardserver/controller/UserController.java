@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fastcampus.boardserver.aop.LoginCheck;
 import com.fastcampus.boardserver.dto.UserDTO;
 import com.fastcampus.boardserver.dto.reqeust.UserDeleteId;
 import com.fastcampus.boardserver.dto.reqeust.UserLoginRequest;
@@ -86,7 +87,7 @@ public class UserController {
 	}
 
 	@PatchMapping("password")
-	// @LoginCheck(type = LoginCheck.UserType.USER)
+	@LoginCheck(type = LoginCheck.UserType.USER)
 	public ResponseEntity<LoginResponse> updateUserPassword(String accountId, @RequestBody UserUpdatePasswordRequest userUpdatePasswordRequest,
 		HttpSession session) {
 		ResponseEntity<LoginResponse> responseEntity = null;
