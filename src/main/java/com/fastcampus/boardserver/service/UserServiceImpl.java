@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void register(UserDTO userDTO) {
-		boolean duplIdResult = isDuplicatedId(userDTO.getUserID());
+		boolean duplIdResult = isDuplicatedId(userDTO.getUserId());
 		if (duplIdResult) {
 			throw new DuplicateIdException("중복된 아이디입니다.");
 		}
@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService {
 		UserDTO memberInfo = userProfileMapper.findByIdAndPassword(id, cryptoPassword);
 
 		if (memberInfo != null) {
-			userProfileMapper.deleteUserProfile(memberInfo.getUserID());
+			userProfileMapper.deleteUserProfile(memberInfo.getUserId());
 		} else {
 			log.error("deleteId ERROR! {}", memberInfo);
 			throw new RuntimeException("deleteId ERROR! id 삭제 메서드를 확인해주세요\n" + "Params : " + memberInfo);
